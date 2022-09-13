@@ -14,15 +14,15 @@ import mplcursors
 NAME_OF_BOTTLE = "Weller 12 Year Old"
 
 
-def get_xrate():
-    url = "https://api.apilayer.com/exchangerates_data/convert?to=USD&from=GBP&amount=1"
-
-    headers = {
-        "apikey": os.getenv('env_1')
-    }
-
-    response = requests.get(url, headers=headers)
-    return response.json()['result']
+# def get_xrate():
+#     url = "https://api.apilayer.com/exchangerates_data/convert?to=USD&from=GBP&amount=1"
+#
+#     headers = {
+#         "apikey": os.getenv('env_1')
+#     }
+#
+#     response = requests.get(url, headers=headers)
+#     return response.json()['result']
 
 
 # def name_filter_manual(bottle_input_manual):
@@ -52,8 +52,8 @@ def name_filter_auto(bottle_input_auto):
 
 
 # Find current exchange rate
-x_rate = get_xrate()
-# x_rate = 1.16
+# x_rate = get_xrate()
+x_rate = 1.16
 
 # Request whiskey data
 url = "https://whiskyauctioneer.com/auction-search?text=Kentucky+Owl+11+Year+Old+Small+Batch+Rye+%231&sort=field_reference_field_end_date+DESC&items_per_page=500"
