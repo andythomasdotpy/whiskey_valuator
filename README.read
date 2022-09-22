@@ -1,8 +1,12 @@
 Bottle valuation tool. This tool scrapes historic pricing data and creates and easy to read chart to track trends.
 
-Filters: There are three filter options to control the chart data as often times a slight variation in a whiskey's release or vintage can disrupt the valuation. To prevent an incorrect vintage from making its way to the final chart, there are filter options which include 1) Manual, 2) Auto and 3) Off.
+Filters: There are three filter options to control the chart data as often times a slight variation in a whiskey's release or vintage can 
+disrupt the valuation. To prevent an incorrect vintage from making its way to the final chart, there are filter options which include 
+1) Manual, 2) Auto and 3) Off.
 
-  To include "Manual" or "Auto" filters, uncomment the corresponding function definition and function call. Also, make sure the constant global variable titled "NAME_OF_BOTTLE" is uncommented and there is a string inserted with the bottle you are searching for. Manual filter will present each bottle to you and allow you to include or exclude in your dataframe. Auto will automatically filter the data based on the variable "NAME_OF_BOTTLE".
+  To include "Manual" or "Auto" filters, uncomment the corresponding function definition and function call. Also, make sure the constant global 
+  variable titled "NAME_OF_BOTTLE" is uncommented and there is a string inserted with the bottle you are searching for. Manual filter will present each 
+  bottle to you and allow you to include or exclude in your dataframe. Auto will automatically filter the data based on the variable "NAME_OF_BOTTLE".
 
 Exchange Rate: The website being scrapped is located overseas and uses the currency "British Pounds". This program includes an exchange rate converter
   which can be used manually or auto converted. To manually convert, include the exchange rate as a variable assigned to "x-rate" which will accept an
