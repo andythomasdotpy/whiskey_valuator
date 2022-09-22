@@ -1,4 +1,4 @@
-Bottle valuation tool. This tool scrapes historic bottle data and creates and easy to read chart to track trends.
+Bottle valuation tool. This tool scrapes historic pricing data and creates and easy to read chart to track trends.
 
 Filters: There are three filter options to control the chart data as often times a slight variation in a whiskey's release or vintage can disrupt the valuation. To prevent an incorrect vintage from making its way to the final chart, there are filter options which include 1) Manual, 2) Auto and 3) Off.
 
