@@ -9,7 +9,7 @@ disrupt the valuation. To prevent an incorrect vintage from making its way to th
   bottle to you and allow you to include or exclude in your dataframe. Auto will automatically filter the data based on the variable "NAME_OF_BOTTLE".
 
 Exchange Rate: The website being scrapped is located overseas and uses the currency "British Pounds". This program includes an exchange rate converter
-  which can be used manually or auto converted. To manually convert, include the exchange rate as a variable assigned to "x-rate" which will accept an
-  integer or floating point value. The auto-convert feature will pull the current exchange rate via an api call. To use the auto convert feature you will
-  need and sign up for an api key at apilayer.com and insert your key into the "headers" dictionary within the function named "get_xrate".
+which can be used manually or auto converted. To manually convert, include the exchange rate as a variable assigned to "x-rate" which will accept an
+integer or floating point value. The auto-convert feature will pull the current exchange rate via an api call. To use the auto convert feature you will
+need and sign up for an api key at apilayer.com and insert your key into the "headers" dictionary within the function named "get_xrate".
 
