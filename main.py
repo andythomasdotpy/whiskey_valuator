@@ -80,7 +80,7 @@ with open('bottle_info.csv', 'w') as file:
 
     # Iterate through list of bottles
     for item in gen_list:
-        #Create temp list for each row1
+        #Create temp list for each row
         row = []
 
         # Parse bottle name and sales status
