@@ -11,7 +11,7 @@ import mplcursors
 
 # Filter bottle exact search criteria. If functions "name_filter_manual" or "name_filter_auto" are disabled,
 # this variable is inactive. Otherwise, fill in exact search criteria as string
-NAME_OF_BOTTLE = "Weller 12 Year Old"
+NAME_OF_BOTTLE = "Weller 12 Year Old 70cl"
 
 
 # def get_xrate():
@@ -30,7 +30,7 @@ NAME_OF_BOTTLE = "Weller 12 Year Old"
 #         return True
 #     else:
 #         while True:
-#             bottle_add_response = input(f"Would you like to include the bottle named {bottle_input}? (Y / N): ").upper()
+#             bottle_add_response = input(f"Would you like to include the bottle named {bottle_input_manual}? (Y / N): ").upper()
 #             if bottle_add_response == "Y" or bottle_add_response == "YES" or bottle_add_response == "N" or bottle_add_response == "NO":
 #                 if bottle_add_response == "Y" or bottle_add_response == "YES":
 #                     return True
@@ -56,7 +56,8 @@ def name_filter_auto(bottle_input_auto):
 x_rate = 1.16
 
 # Request whiskey data
-url = "https://whiskyauctioneer.com/auction-search?text=Kentucky+Owl+11+Year+Old+Small+Batch+Rye+%231&sort=field_reference_field_end_date+DESC&items_per_page=500"
+# url = "https://whiskyauctioneer.com/auction-search?text=Kentucky+Owl+11+Year+Old+Small+Batch+Rye+%231&sort=field_reference_field_end_date+DESC&items_per_page=500"
+url = "https://whiskyauctioneer.com/auction-search?text=weller+12&sort=field_reference_field_end_date+DESC&items_per_page=500&f%5B0%5D=distilleries%3A180"
 r = requests.get(url, auth=('user', 'pass'))
 
 # Soupify data
@@ -90,10 +91,10 @@ with open('bottle_info.csv', 'w') as file:
         # bool_filter = name_filter_manual(bottle_name)
 
         # Optional Bottle Filter (auto)
-        # bool_filter = name_filter_auto(bottle_name)
+        bool_filter = name_filter_auto(bottle_name)
 
         # Optional Filter (off)
-        bool_filter = True
+        # bool_filter = True
 
         # Only add bottles that pass the filter (if filter activiated)
         if bool_filter == True:
