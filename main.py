@@ -7,10 +7,11 @@ import seaborn as sns
 import pandas as pd
 from matplotlib import pyplot as plt
 import mplcursors
+from sandbox import search_to_url
 
 
 # Filter bottle exact search criteria.
-NAME_OF_BOTTLE = "Weller Full Proof"
+NAME_OF_BOTTLE = "weller 12"
 
 
 def name_filter_auto(bottle_input_auto):
@@ -20,12 +21,25 @@ def name_filter_auto(bottle_input_auto):
         return False
 
 
-x_rate = 1.16
+x_rate = 1.22
+
+# Function call to sandbox.py which turns user search text into url
+dynamic_url = search_to_url(NAME_OF_BOTTLE)
+print(dynamic_url)
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://google.com",
+    "DNT": "1",
+}
 
 # Request whiskey data
 url = "https://whiskyauctioneer.com/auction-search?text=weller+full+proof&sort=field_reference_field_end_date+DESC&items_per_page=500"
-r = requests.get(url, auth=('user', 'pass'))
-print(r)
+print(url)
+
+r = requests.get(dynamic_url, headers=headers)
+print(r.text)
 
 # Soupify data
 soup = BeautifulSoup(r.text, 'html.parser')
