@@ -9,35 +9,8 @@ from matplotlib import pyplot as plt
 import mplcursors
 
 
-# Filter bottle exact search criteria. If functions "name_filter_manual" or "name_filter_auto" are disabled,
-# this variable is inactive. Otherwise, fill in exact search criteria as string
-NAME_OF_BOTTLE = "Weller 12 Year Old 70cl"
-
-
-# def get_xrate():
-#     url = "https://api.apilayer.com/exchangerates_data/convert?to=USD&from=GBP&amount=1"
-#
-#     headers = {
-#         "apikey": os.getenv('env_1')
-#     }
-#
-#     response = requests.get(url, headers=headers)
-#     return response.json()['result']
-
-
-# def name_filter_manual(bottle_input_manual):
-#     if bottle_input_manual == NAME_OF_BOTTLE:
-#         return True
-#     else:
-#         while True:
-#             bottle_add_response = input(f"Would you like to include the bottle named {bottle_input_manual}? (Y / N): ").upper()
-#             if bottle_add_response == "Y" or bottle_add_response == "YES" or bottle_add_response == "N" or bottle_add_response == "NO":
-#                 if bottle_add_response == "Y" or bottle_add_response == "YES":
-#                     return True
-#                 else:
-#                     return False
-#             else:
-#                 print('Sorry, your response did not register. Please answer with "Y" or "N".')
+# Filter bottle exact search criteria.
+NAME_OF_BOTTLE = "Weller Full Proof"
 
 
 def name_filter_auto(bottle_input_auto):
@@ -47,21 +20,16 @@ def name_filter_auto(bottle_input_auto):
         return False
 
 
-# def name_filter_off():
-#     return True
-
-
-# Find current exchange rate
-# x_rate = get_xrate()
 x_rate = 1.16
 
 # Request whiskey data
-# url = "https://whiskyauctioneer.com/auction-search?text=Kentucky+Owl+11+Year+Old+Small+Batch+Rye+%231&sort=field_reference_field_end_date+DESC&items_per_page=500"
-url = "https://whiskyauctioneer.com/auction-search?text=weller+12&sort=field_reference_field_end_date+DESC&items_per_page=500&f%5B0%5D=distilleries%3A180"
+url = "https://whiskyauctioneer.com/auction-search?text=weller+full+proof&sort=field_reference_field_end_date+DESC&items_per_page=500"
 r = requests.get(url, auth=('user', 'pass'))
+print(r)
 
 # Soupify data
 soup = BeautifulSoup(r.text, 'html.parser')
+print(soup)
 
 # Extract each bottle from site to a list
 gen_list = soup.select("div .views-row")
@@ -87,14 +55,8 @@ with open('bottle_info.csv', 'w') as file:
         bottle_name = item.find(class_="protitle").contents[0]
         sales_status = item.find_all(class_="label")[1].contents[0]
 
-        # Optional Bottle Filter (manual)
-        # bool_filter = name_filter_manual(bottle_name)
-
         # Optional Bottle Filter (auto)
         bool_filter = name_filter_auto(bottle_name)
-
-        # Optional Filter (off)
-        # bool_filter = True
 
         # Only add bottles that pass the filter (if filter activiated)
         if bool_filter == True:
@@ -142,7 +104,8 @@ df['sales_date'] = pd.to_datetime(df['sales_date']).dt.date
 
 # Create chart and print to screen
 sns.set(rc = {'figure.figsize':(15,8)})
-sns.lineplot(data=df, x="sales_date", y="price_usd").set(title=bottle_name)
+# sns.lineplot(data=df, x="sales_date", y="price_usd").set(title=bottle_name)
+sns.lineplot(data=df, x="sales_date", y="price_usd").set()
 sns.scatterplot(data=df, x="sales_date", y="price_usd")
 plt.xlabel('Date of Sale')
 plt.ylabel('Price (converted to USD)')
